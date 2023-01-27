@@ -1,5 +1,8 @@
-import './App.css';
-
+import { GlobalStyle } from './styles/Globalstyles';
 export function App() {
-  return <h1>Teste</h1>;
+  return (
+    <h1>
+      <GlobalStyle />
+    </h1>
+  );
 }
