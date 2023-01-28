@@ -1,5 +1,14 @@
 import React from 'react';
-import { Container, Content, Header, Title } from './style';
+//Components
+import { Container, Content, Header, Title, Main } from './style';
+
+//Data
+import { items } from '../../data/items';
+import { categoria } from '../../data/categoria';
+
+//Types
+import { Item } from '../../types/Items';
+import { Categorias } from '../../types/Categorias';
 
 export function Home() {
   return (
@@ -8,6 +17,7 @@ export function Home() {
         <Header>
           <Title>Sistema financeiro</Title>
         </Header>
+        <Main>.</Main>
       </Content>
     </Container>
   );
