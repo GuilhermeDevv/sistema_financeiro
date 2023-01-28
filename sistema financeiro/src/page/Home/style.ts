@@ -1,17 +1,21 @@
 import styled from 'styled-components';
-
+import { colors } from '../../styles/GlobalStyles';
 export const Container = styled.div``;
 
 export const Content = styled.div`
-  background-color: #fff;
+  background-color: ${colors.primary};
 `;
 
 export const Header = styled.header`
-  background-color: #808080;
+  background-color: ${colors.secondary};
+  height: 15rem;
+  text-align: center;
+`;
 
-  & h1 {
-    color: ;
-  }
+export const Title = styled.h1`
+  color: ${colors.primary};
+  text-transform: uppercase;
+  padding-top: 3rem;
 `;
 
 export const Main = styled.main``;

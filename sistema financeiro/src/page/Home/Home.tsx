@@ -1,12 +1,12 @@
 import React from 'react';
-import { Container, Content, Header } from './style';
+import { Container, Content, Header, Title } from './style';
 
 export function Home() {
   return (
     <Container>
       <Content>
         <Header>
-          <h1>Sistema financeiro</h1>
+          <Title>Sistema financeiro</Title>
         </Header>
       </Content>
     </Container>
