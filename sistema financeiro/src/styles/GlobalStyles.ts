@@ -20,10 +20,15 @@ html{
 body{
     width: 100%;
     height: 100%;
-    background-color: #eef1f6;
 }
 img{
     max-width: 100%;
     display: block;
 }
 `;
+
+export const colors = {
+  primary: '#FFFFFF',
+  secondary: '#808080',
+  tertiary: '#FFD700',
+};
