@@ -9,6 +9,5 @@ export const Content = styled.div`
 export const Main = styled.main`
   margin: auto;
   max-width: 98rem;
-  background-color: red;
   margin-bottom: 5rem;
 `;
