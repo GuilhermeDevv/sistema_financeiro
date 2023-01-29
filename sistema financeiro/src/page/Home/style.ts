@@ -6,16 +6,9 @@ export const Content = styled.div`
   background-color: ${colors.primary};
 `;
 
-export const Header = styled.header`
-  background-color: ${colors.secondary};
-  height: 15rem;
-  text-align: center;
+export const Main = styled.main`
+  margin: auto;
+  max-width: 98rem;
+  background-color: red;
+  margin-bottom: 5rem;
 `;
-
-export const Title = styled.h1`
-  color: ${colors.primary};
-  text-transform: uppercase;
-  padding-top: 3rem;
-`;
-
-export const Main = styled.main``;
