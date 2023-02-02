@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Content, Main } from './style';
 import { Header } from '../../components/Header/Header';
 import { AreaDeTabela } from '../../components/AreaDeTabela/AreaDeTabela';
+import { AreaDeInfo } from '../../components/AreaDeInfo/AreaDeInfo';
 
 //Data
 import { items } from '../../data/items';
@@ -32,6 +33,7 @@ export function Home() {
       <Content>
         <Header />
         <Main>
+          <AreaDeInfo />
           <AreaDeTabela lista={listaFiltrada} />
         </Main>
       </Content>
