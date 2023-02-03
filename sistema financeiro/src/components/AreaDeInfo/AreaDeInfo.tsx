@@ -12,6 +12,9 @@ import {
 import { Caixa } from '../InfoReutilizavel/Caixa';
 //Types
 import { MesAtual } from '../../types/MesAtual';
+
+//Utils
+import { formatarMes } from '../../utils/formatarMes/formatarMes';
 export function AreaDeInfo({ mesAtual }: MesAtual) {
   const nomesInfo = ['Receita', 'Despesa', 'Balanço'];
 
@@ -19,7 +22,7 @@ export function AreaDeInfo({ mesAtual }: MesAtual) {
     <Container>
       <EscolherMes>
         <SetaPraTras>&#129092;</SetaPraTras>
-        <MesEscolhido>{mesAtual}</MesEscolhido>
+        <MesEscolhido>{formatarMes(mesAtual)}</MesEscolhido>
         <SetaPraFrente>&#129094;</SetaPraFrente>
       </EscolherMes>
       {nomesInfo.map((text, i) => (
