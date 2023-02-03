@@ -19,10 +19,15 @@ import {
   filtrarListaPeloMes,
 } from '../../utils/currentData/currentDate';
 
+//Hooks
+import { setListaHook } from '../../hooks/Lista';
+import { setMesHook } from '../../hooks/Mes';
+import { setListaFiltradaHook } from '../../hooks/ListaFiltrada';
+
 export function Home() {
-  const [lista, setLista] = useState(items);
-  const [mes, setMes] = useState(dateCurrent);
-  const [listaFiltrada, setListaFiltrada] = useState<Item[]>([]);
+  const { lista, setLista } = setListaHook(items);
+  const { mes, setMes } = setMesHook(dateCurrent());
+  const { listaFiltrada, setListaFiltrada } = setListaFiltradaHook<Item[]>([]);
 
   useEffect(() => {
     setListaFiltrada(filtrarListaPeloMes(lista, mes));
@@ -33,7 +38,7 @@ export function Home() {
       <Content>
         <Header />
         <Main>
-          <AreaDeInfo />
+          <AreaDeInfo mesAtual={''} />
           <AreaDeTabela lista={listaFiltrada} />
         </Main>
       </Content>
