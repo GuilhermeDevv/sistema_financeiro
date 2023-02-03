@@ -10,15 +10,16 @@ import {
 
 //Components
 import { Caixa } from '../InfoReutilizavel/Caixa';
-
-export function AreaDeInfo() {
+//Types
+import { MesAtual } from '../../types/MesAtual';
+export function AreaDeInfo({ mesAtual }: MesAtual) {
   const nomesInfo = ['Receita', 'Despesa', 'Balanço'];
 
   return (
     <Container>
       <EscolherMes>
         <SetaPraTras>&#129092;</SetaPraTras>
-        <MesEscolhido>Outubro 2023</MesEscolhido>
+        <MesEscolhido>{mesAtual}</MesEscolhido>
         <SetaPraFrente>&#129094;</SetaPraFrente>
       </EscolherMes>
       {nomesInfo.map((text, i) => (
