@@ -32,13 +32,15 @@ export function Home() {
   useEffect(() => {
     setListaFiltrada(filtrarListaPeloMes(lista, mes));
   }, [lista, mes]);
-
+  function alteracaoMesFn(novoMes: string) {
+    setMes(novoMes);
+  }
   return (
     <Container>
       <Content>
         <Header />
         <Main>
-          <AreaDeInfo mesAtual={''} />
+          <AreaDeInfo alteracaoMes={alteracaoMesFn} mesAtual={mes} />
           <AreaDeTabela lista={listaFiltrada} />
         </Main>
       </Content>
