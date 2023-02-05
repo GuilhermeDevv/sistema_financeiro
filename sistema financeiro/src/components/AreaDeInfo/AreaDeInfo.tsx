@@ -11,15 +11,12 @@ import {
 //Components
 import { Caixa } from '../InfoReutilizavel/Caixa';
 //Types
-import { MesAtual, AlteracaoMesFn } from '../../types/MesAtual';
+import { Props } from '../../types/MesAtual';
 
 //Utils
 import { formatarMes } from '../../utils/formatarMes/formatarMes';
 
-export function AreaDeInfo({
-  mesAtual,
-  alteracaoMes,
-}: MesAtual | AlteracaoMesFn) {
+export function AreaDeInfo({ mesAtual, alteracaoMes, despesa, renda }: Props) {
   //
   const nomesInfo = ['Receita', 'Despesa', 'Balanço'];
   function mesAnterior() {
