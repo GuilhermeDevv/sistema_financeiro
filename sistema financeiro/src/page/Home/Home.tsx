@@ -28,7 +28,8 @@ export function Home() {
   const { lista, setLista } = setListaHook(items);
   const { mes, setMes } = setMesHook(dateCurrent());
   const { listaFiltrada, setListaFiltrada } = setListaFiltradaHook<Item[]>([]);
-
+  const [renda, setRenda] = useState(0);
+  const [despesa, setDespesa] = useState(0);
   useEffect(() => {
     setListaFiltrada(filtrarListaPeloMes(lista, mes));
   }, [lista, mes]);
@@ -40,7 +41,12 @@ export function Home() {
       <Content>
         <Header />
         <Main>
-          <AreaDeInfo alteracaoMes={alteracaoMesFn} mesAtual={mes} />
+          <AreaDeInfo
+            alteracaoMes={alteracaoMesFn}
+            mesAtual={mes}
+            renda={renda}
+            despesa={despesa}
+          />
           <AreaDeTabela lista={listaFiltrada} />
         </Main>
       </Content>
