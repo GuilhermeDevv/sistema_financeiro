@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 //Components Styles
 import {
   Container,
@@ -17,8 +17,22 @@ import { Props } from '../../types/MesAtual';
 import { formatarMes } from '../../utils/formatarMes/formatarMes';
 
 export function AreaDeInfo({ mesAtual, alteracaoMes, despesa, renda }: Props) {
-  //
-  const nomesInfo = ['Receita', 'Despesa', 'Balanço'];
+  const [infoItem, setInfoItem] = useState<
+    Array<{
+      categoria: string;
+      valor: string;
+    }>
+  >([]);
+
+  useEffect(() => {
+    const dados = [
+      { categoria: 'Receita', valor: String(renda) },
+      { categoria: 'Despesa', valor: String(despesa) },
+      { categoria: 'Balanço', valor: String(renda + despesa) },
+    ];
+    setInfoItem(dados);
+  }, [despesa, renda]);
+
   function mesAnterior() {
     const [ano, mes] = mesAtual.split('/');
     const data = new Date(+ano, +mes - 1);
@@ -32,6 +46,7 @@ export function AreaDeInfo({ mesAtual, alteracaoMes, despesa, renda }: Props) {
     data.setMonth(data.getMonth() + 1);
     alteracaoMes(`${data.getFullYear()}/${data.getMonth() + 1}`);
   }
+
   return (
     <Container>
       <EscolherMes>
@@ -51,8 +66,8 @@ export function AreaDeInfo({ mesAtual, alteracaoMes, despesa, renda }: Props) {
           &#129094;
         </SetaPraFrente>
       </EscolherMes>
-      {nomesInfo.map((text, i) => (
-        <Caixa key={i} titulo={text} valor="" />
+      {infoItem.map((item, i) => (
+        <Caixa key={i} titulo={item.categoria} valor={item.valor} />
       ))}
     </Container>
   );
