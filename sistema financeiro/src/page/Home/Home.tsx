@@ -30,9 +30,30 @@ export function Home() {
   const { listaFiltrada, setListaFiltrada } = setListaFiltradaHook<Item[]>([]);
   const [renda, setRenda] = useState(0);
   const [despesa, setDespesa] = useState(0);
+
   useEffect(() => {
     setListaFiltrada(filtrarListaPeloMes(lista, mes));
   }, [lista, mes]);
+
+  useEffect(() => {
+    setRenda(0);
+    setDespesa(0);
+    let valorTemporario = 0;
+    const categoriaDeDespesas = categoria.filter((c) => c.despesa);
+
+    for (const item of listaFiltrada) {
+      const valor = item.valor.split(', ');
+      const valorFormatado = +valor[0].split(',').join('.');
+
+      if (categoriaDeDespesas.some((c) => c.titulo === item.categoria)) {
+        valorTemporario += valorFormatado;
+        setDespesa(valorTemporario);
+      } else {
+        setRenda(valorFormatado);
+      }
+    }
+  }, [listaFiltrada]);
+
   function alteracaoMesFn(novoMes: string) {
     setMes(novoMes);
   }
