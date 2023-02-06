@@ -23,6 +23,7 @@ import {
 import { setListaHook } from '../../hooks/Lista';
 import { setMesHook } from '../../hooks/Mes';
 import { setListaFiltradaHook } from '../../hooks/ListaFiltrada';
+import { AlteracaoDoMes } from '../../components/AlteracaoDoMes/AlteracaoDoMes';
 
 export function Home() {
   const { lista, setLista } = setListaHook(items);
@@ -68,6 +69,7 @@ export function Home() {
             renda={renda}
             despesa={despesa}
           />
+          <AlteracaoDoMes fnMes={setMes} />
           <AreaDeTabela lista={listaFiltrada} />
         </Main>
       </Content>
