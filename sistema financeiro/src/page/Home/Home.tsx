@@ -26,7 +26,7 @@ import { setListaFiltradaHook } from '../../hooks/ListaFiltrada';
 import { AlteracaoDoMes } from '../../components/AlteracaoDoMes/AlteracaoDoMes';
 
 export function Home() {
-  const { lista, setLista } = setListaHook(items);
+  const { lista, setLista } = setListaHook();
   const { mes, setMes } = setMesHook(dateCurrent());
   const { listaFiltrada, setListaFiltrada } = setListaFiltradaHook<Item[]>([]);
   const [renda, setRenda] = useState(0);
@@ -69,7 +69,7 @@ export function Home() {
             renda={renda}
             despesa={despesa}
           />
-          <AlteracaoDoMes fnMes={setMes} />
+          <AlteracaoDoMes items={items} setItems={setLista} />
           <AreaDeTabela lista={listaFiltrada} />
         </Main>
       </Content>
