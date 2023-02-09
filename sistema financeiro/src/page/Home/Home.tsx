@@ -21,42 +21,44 @@ import {
 
 //Hooks
 import { setListaHook } from '../../hooks/Lista';
-import { setMesHook } from '../../hooks/Mes';
-import { setListaFiltradaHook } from '../../hooks/ListaFiltrada';
+import { setMonthHook } from '../../hooks/Mes';
+import { setFilteredListHook } from '../../hooks/ListaFiltrada';
 import { AlteracaoDoMes } from '../../components/AlteracaoDoMes/AlteracaoDoMes';
 
 export function Home() {
-  const { lista, setLista } = setListaHook();
-  const { mes, setMes } = setMesHook(dateCurrent());
-  const { listaFiltrada, setListaFiltrada } = setListaFiltradaHook<Item[]>([]);
-  const [renda, setRenda] = useState(0);
-  const [despesa, setDespesa] = useState(0);
+  const { list, setList } = setListaHook();
+  const { month, setMonth } = setMonthHook(dateCurrent());
+  const { filteredList, setFilteredList } = setFilteredListHook<Item[]>([]);
+  const [income, setIncome] = useState(0);
+  const [expense, setExpense] = useState(0);
 
   useEffect(() => {
-    setListaFiltrada(filtrarListaPeloMes(lista, mes));
-  }, [lista, mes]);
+    setFilteredList(filtrarListaPeloMes(list, month));
+  }, [list, month]);
 
   useEffect(() => {
-    setRenda(0);
-    setDespesa(0);
-    let valorTemporario = 0;
-    const categoriaDeDespesas = categoria.filter((c) => c.despesa);
+    setIncome(0);
+    setExpense(0);
+    let handlingValue = 0;
+    const expenseCategory = categoria.filter((category) => category.despesa);
 
-    for (const item of listaFiltrada) {
-      const valor = item.valor.split(', ');
-      const valorFormatado = +valor[0].split(',').join('.');
+    for (const item of filteredList) {
+      const value = item.valor.split(', ');
+      const formattedValue = +value[0].split(',').join('.');
 
-      if (categoriaDeDespesas.some((c) => c.titulo === item.categoria)) {
-        valorTemporario += valorFormatado;
-        setDespesa(valorTemporario);
+      if (
+        expenseCategory.some((category) => category.titulo === item.categoria)
+      ) {
+        handlingValue += formattedValue;
+        setExpense(handlingValue);
       } else {
-        setRenda(valorFormatado);
+        setIncome(formattedValue);
       }
     }
-  }, [listaFiltrada]);
+  }, [filteredList]);
 
-  function alteracaoMesFn(novoMes: string) {
-    setMes(novoMes);
+  function changeMonth(month: string) {
+    setMonth(month);
   }
   return (
     <Container>
@@ -64,13 +66,13 @@ export function Home() {
         <Header />
         <Main>
           <AreaDeInfo
-            alteracaoMes={alteracaoMesFn}
-            mesAtual={mes}
-            renda={renda}
-            despesa={despesa}
+            changeMonth={changeMonth}
+            currentMonth={month}
+            income={income}
+            expense={expense}
           />
-          <AlteracaoDoMes items={items} setItems={setLista} />
-          <AreaDeTabela lista={listaFiltrada} />
+          <AlteracaoDoMes items={items} setItems={setList} />
+          <AreaDeTabela list={filteredList} />
         </Main>
       </Content>
     </Container>
