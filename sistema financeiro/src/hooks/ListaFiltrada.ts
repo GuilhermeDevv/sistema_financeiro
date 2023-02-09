@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function setListaFiltradaHook<T>(dados: T) {
-  const [listaFiltrada, setListaFiltrada] = useState(dados);
-  return { listaFiltrada, setListaFiltrada };
+export function setFilteredListHook<T>(dados: T) {
+  const [filteredList, setFilteredList] = useState(dados);
+  return { filteredList, setFilteredList };
 }
