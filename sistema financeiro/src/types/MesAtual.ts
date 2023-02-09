@@ -1,6 +1,6 @@
 export type Props = {
-  mesAtual: string;
-  alteracaoMes: (data: string) => void;
-  renda: number;
-  despesa: number;
+  currentMonth: string;
+  changeMonth: (data: string) => void;
+  income: number;
+  expense: number;
 };
