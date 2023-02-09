@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function setMesHook<T>(mesAtual: T) {
-  const [mes, setMes] = useState(mesAtual);
-  return { mes, setMes };
+export function setMonthHook<T>(mesAtual: T) {
+  const [month, setMonth] = useState(mesAtual);
+  return { month, setMonth };
 }
