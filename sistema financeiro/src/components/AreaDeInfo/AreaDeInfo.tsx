@@ -16,8 +16,13 @@ import { Props } from '../../types/MesAtual';
 //Utils
 import { formatarMes } from '../../utils/formatarMes/formatarMes';
 
-export function AreaDeInfo({ mesAtual, alteracaoMes, despesa, renda }: Props) {
-  const [infoItem, setInfoItem] = useState<
+export function AreaDeInfo({
+  currentMonth,
+  changeMonth,
+  income,
+  expense,
+}: Props) {
+  const [itemInformation, setItemInformation] = useState<
     Array<{
       categoria: string;
       valor: string;
@@ -25,26 +30,26 @@ export function AreaDeInfo({ mesAtual, alteracaoMes, despesa, renda }: Props) {
   >([]);
 
   useEffect(() => {
-    const dados = [
-      { categoria: 'Receita', valor: String(renda) },
-      { categoria: 'Despesa', valor: String(despesa) },
-      { categoria: 'Balanço', valor: String(renda + despesa) },
+    const data = [
+      { categoria: 'Receita', valor: String(income) },
+      { categoria: 'Despesa', valor: String(expense) },
+      { categoria: 'Balanço', valor: String(income + expense) },
     ];
-    setInfoItem(dados);
-  }, [despesa, renda]);
+    setItemInformation(data);
+  }, [expense, income]);
 
-  function mesAnterior() {
-    const [ano, mes] = mesAtual.split('/');
-    const data = new Date(+ano, +mes - 1);
-    data.setMonth(data.getMonth() - 1);
-    alteracaoMes(`${data.getFullYear()}/${data.getMonth() + 1}`);
+  function changeMonthHelper(offset: number) {
+    const [year, month] = currentMonth.split('/');
+    const data = new Date(+year, +month - 1);
+    data.setMonth(data.getMonth() + offset);
+    changeMonth(`${data.getFullYear()}/${data.getMonth() + 1}`);
+  }
+  function lastMonth() {
+    changeMonthHelper(-1);
   }
 
-  function mesSucessor() {
-    const [ano, mes] = mesAtual.split('/');
-    const data = new Date(+ano, +mes - 1);
-    data.setMonth(data.getMonth() + 1);
-    alteracaoMes(`${data.getFullYear()}/${data.getMonth() + 1}`);
+  function nextMonth() {
+    changeMonthHelper(1);
   }
 
   return (
@@ -52,21 +57,21 @@ export function AreaDeInfo({ mesAtual, alteracaoMes, despesa, renda }: Props) {
       <EscolherMes>
         <SetaPraTras
           onClick={() => {
-            mesAnterior();
+            lastMonth();
           }}
         >
           &#129092;
         </SetaPraTras>
-        <MesEscolhido>{formatarMes(mesAtual)}</MesEscolhido>
+        <MesEscolhido>{formatarMes(currentMonth)}</MesEscolhido>
         <SetaPraFrente
           onClick={() => {
-            mesSucessor();
+            nextMonth();
           }}
         >
           &#129094;
         </SetaPraFrente>
       </EscolherMes>
-      {infoItem.map((item, i) => (
+      {itemInformation.map((item, i) => (
         <Caixa key={i} titulo={item.categoria} valor={item.valor} />
       ))}
     </Container>
