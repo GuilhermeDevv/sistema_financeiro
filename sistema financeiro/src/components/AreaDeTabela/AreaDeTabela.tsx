@@ -4,10 +4,10 @@ import { Item } from '../../types/Items';
 import { ItemDaTabela } from '../ItemDaTabela/ItemDaTabela';
 
 type Prop = {
-  lista: Item[];
+  list: Item[];
 };
 
-export function AreaDeTabela({ lista }: Prop) {
+export function AreaDeTabela({ list }: Prop) {
   return (
     <Table>
       <thead>
@@ -19,7 +19,7 @@ export function AreaDeTabela({ lista }: Prop) {
         </tr>
       </thead>
       <tbody>
-        {lista.map((item, index) => (
+        {list.map((item, index) => (
           <ItemDaTabela key={index} lista={item} />
         ))}
       </tbody>
