@@ -1,5 +1,5 @@
 export type Item = {
-  data: Date | undefined;
+  data: Date;
   category: string;
   title: string;
   value: string;
