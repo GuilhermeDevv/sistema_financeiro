@@ -43,11 +43,11 @@ export function Home() {
     const expenseCategory = categoria.filter((category) => category.despesa);
 
     for (const item of filteredList) {
-      const value = item.valor.split(', ');
+      const value = item.value.split(', ');
       const formattedValue = +value[0].split(',').join('.');
 
       if (
-        expenseCategory.some((category) => category.titulo === item.categoria)
+        expenseCategory.some((category) => category.titulo === item.category)
       ) {
         handlingValue += formattedValue;
         setExpense(handlingValue);
