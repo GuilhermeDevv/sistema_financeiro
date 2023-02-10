@@ -11,7 +11,6 @@ import { categoria } from '../../data/categoria';
 
 //Types
 import { Item } from '../../types/Items';
-import { Categorias } from '../../types/Categorias';
 
 //utils
 import {
