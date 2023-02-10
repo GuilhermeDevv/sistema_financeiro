@@ -4,20 +4,18 @@ import { formatarData } from '../../utils/formatarData/formatarData';
 import { Item } from '../../types/Items';
 
 type Prop = {
-  lista: Item;
+  list: Item;
 };
 
-export function ItemDaTabela({
-  lista: { data, categoria, titulo, valor },
-}: Prop) {
+export function ItemDaTabela({ list: { data, category, title, value } }: Prop) {
   return (
     <LinhaDaTabela>
       <ColunaDaTabela>{formatarData(data)}</ColunaDaTabela>
       <ColunaDaTabela>
-        <StylesCategoria>{categoria}</StylesCategoria>
+        <StylesCategoria>{category}</StylesCategoria>
       </ColunaDaTabela>
-      <ColunaDaTabela>{titulo}</ColunaDaTabela>
-      <ColunaDaTabela>R${valor}</ColunaDaTabela>
+      <ColunaDaTabela>{title}</ColunaDaTabela>
+      <ColunaDaTabela>R${value}</ColunaDaTabela>
     </LinhaDaTabela>
   );
 }
