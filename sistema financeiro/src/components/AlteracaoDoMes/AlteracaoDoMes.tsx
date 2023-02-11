@@ -39,16 +39,13 @@ export function AlteracaoDoMes({ items, setItems }: Props) {
       alert('Algum campo está vazio/valor incorreto.');
       return;
     }
-
-    setItems([
-      ...items,
-      {
-        data: dateSelected,
-        category: selectedCategory,
-        title,
-        value,
-      },
-    ]);
+    items.push({
+      data: dateSelected,
+      category: selectedCategory,
+      title,
+      value,
+    });
+    setItems([...items]);
   }
 
   return (
