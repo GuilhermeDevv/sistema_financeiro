@@ -19,6 +19,7 @@ export function AlteracaoDoMes({ items, setItems }: Props) {
 
   function setDateSelectedFn(value: string): void {
     const data = new Date(value);
+    data.setDate(data.getDate() + 1);
     setDateSelected(data);
   }
 
@@ -39,12 +40,22 @@ export function AlteracaoDoMes({ items, setItems }: Props) {
       alert('Algum campo está vazio/valor incorreto.');
       return;
     }
-    items.push({
-      data: dateSelected,
-      category: selectedCategory,
-      title,
-      value,
-    });
+
+    if (selectedCategory != 'Salario') {
+      items.push({
+        data: dateSelected,
+        category: selectedCategory,
+        title,
+        value: `-${value}`,
+      });
+    } else {
+      items.push({
+        data: dateSelected,
+        category: selectedCategory,
+        title,
+        value,
+      });
+    }
     setItems([...items]);
   }
 
