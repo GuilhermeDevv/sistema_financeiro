@@ -20,7 +20,7 @@ export function AreaDeTabela({ list }: Prop) {
       </thead>
       <tbody>
         {list.map((item, index) => (
-          <ItemDaTabela key={index} lista={item} />
+          <ItemDaTabela key={index} list={item} />
         ))}
       </tbody>
     </Table>
